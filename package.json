@@ -1,0 +1,22 @@
+{
+  "name": "shopper",
+  "version": "1.0.0",
+  "description": "Ecommerce website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/la-ki/shopper.git"
+  },
+  "author": "Lazar Kostic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/la-ki/shopper/issues"
+  },
+  "homepage": "https://github.com/la-ki/shopper#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
