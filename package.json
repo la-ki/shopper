@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Ecommerce website",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server/server",
     "server": "nodemon server/server",
