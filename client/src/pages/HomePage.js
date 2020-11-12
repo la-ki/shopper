@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +23,7 @@ const HomePage = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant='error'>{error}</Message>
+        <Message variant="error">{error}</Message>
       ) : (
         <Row>
           {products.map((product) => {
