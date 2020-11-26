@@ -16,9 +16,10 @@ import {
   USER_DETAILS_RESET,
   USER_LIST_REQUEST,
   USER_LIST_SUCCESS,
-  USER_LIST_FAIL
+  USER_LIST_FAIL,
+  USER_LIST_RESET
 } from "../constants/userConstants";
-import {ORDER_LIST_MY_RESET} from '../constants/orderConstants';
+import { ORDER_LIST_MY_RESET } from '../constants/orderConstants';
 
 // LOGIN ACTION
 export const login = (email, password) => async (dispatch) => {
@@ -63,8 +64,9 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem("shippingAddress");
   localStorage.removeItem("paymentMethod");
   dispatch({ type: USER_LOGOUT });
-  dispatch({type: USER_DETAILS_RESET});
-  dispatch({type: ORDER_LIST_MY_RESET});
+  dispatch({ type: USER_DETAILS_RESET });
+  dispatch({ type: ORDER_LIST_MY_RESET });
+  dispatch({ type: USER_LIST_RESET });
   document.location.href = '/login';
 };
 
@@ -116,7 +118,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       type: USER_DETAILS_REQUEST,
     });
 
-    const {userLogin: {userInfo}} = getState();
+    const { userLogin: { userInfo } } = getState();
 
     const config = {
       headers: {
