@@ -56,9 +56,13 @@ export const login = (email, password) => async (dispatch) => {
 // LOGOUT ACTION
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
+  localStorage.removeItem("cartItems");
+  localStorage.removeItem("shippingAddress");
+  localStorage.removeItem("paymentMethod");
   dispatch({ type: USER_LOGOUT });
   dispatch({type: USER_DETAILS_RESET});
   dispatch({type: ORDER_LIST_MY_RESET});
+  document.location.href = '/login';
 };
 
 // REGISTER ACTION
@@ -113,7 +117,6 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.token}`
       },
     };
