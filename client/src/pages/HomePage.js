@@ -6,7 +6,10 @@ import { listProducts } from "../actions/productActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 
-const HomePage = () => {
+const HomePage = ({ match }) => {
+
+  const keyword = match.params.keyword;
+
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
@@ -14,8 +17,8 @@ const HomePage = () => {
   const { loading, error, products } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword));
+  }, [dispatch, keyword]);
 
   return (
     <>
@@ -25,16 +28,16 @@ const HomePage = () => {
       ) : error ? (
         <Message variant="error">{error}</Message>
       ) : (
-        <Row>
-          {products.map((product) => {
-            return (
-              <Col key={product._id} sm={12} md={6} lg={4}>
-                <Product product={product} />
-              </Col>
-            );
-          })}
-        </Row>
-      )}
+            <Row>
+              {products.map((product) => {
+                return (
+                  <Col key={product._id} sm={12} md={6} lg={4}>
+                    <Product product={product} />
+                  </Col>
+                );
+              })}
+            </Row>
+          )}
     </>
   );
 };
