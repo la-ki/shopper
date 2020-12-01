@@ -14,7 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails, createProductReview } from "../actions/productActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
+import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
+import Meta from '../components/Meta';
 
 const ProductPage = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -34,11 +35,11 @@ const ProductPage = ({ history, match }) => {
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    if(successProductReview) {
+    if (successProductReview) {
       alert('Review Submitted!');
       setRating(0);
       setComment('');
-      dispatch({type: PRODUCT_CREATE_REVIEW_RESET});
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
     dispatch(listProductDetails(match.params.id));
   }, [dispatch, match, successProductReview]);
@@ -67,6 +68,7 @@ const ProductPage = ({ history, match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
             <>
+              <Meta title={product.name} />
               <Row>
                 <Col md={6}>
                   <Image fluid src={product.image} alt={product.name} />
